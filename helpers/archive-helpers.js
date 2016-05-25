@@ -28,7 +28,14 @@ exports.initialize = function(pathsObj){
 exports.readListOfUrls = function(){
 };
 
-exports.isUrlInList = function(){
+exports.isUrlInList = function(url){
+  // if (url === '/') {
+    // return true;
+  // }
+  //urlList stores all of the urls we've recieved.
+  var urlList = paths.list;
+  //iterate over list, and check to see if the url exists in the list.  
+  //return true
 };
 
 exports.addUrlToList = function(){
@@ -38,4 +45,5 @@ exports.isUrlArchived = function(){
 };
 
 exports.downloadUrls = function(){
+  // Add content from current url into paths.archievedSites
 };
