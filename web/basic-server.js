@@ -6,7 +6,13 @@ var initialize = require("./initialize.js");
 // HINT: It has to do with what's in .gitignore
 initialize();
 
-var port = 8080;
+// var router = {
+//   '/': handler.handleRequest    // Index route
+
+// };
+
+// var port = 8080;
+var port = 3000;
 var ip = "127.0.0.1";
 var server = http.createServer(handler.handleRequest);
 
