@@ -17,12 +17,6 @@ exports.paths = {
   list: path.join(__dirname, '../archives/sites.txt')
 };
 
-var paths2 = {
-  siteAssets: path.join(__dirname, '../web/public'),
-  archivedSites: path.join(__dirname, '../archives/sites'),
-  list: path.join(__dirname, '../archives/sites.txt')
-};
-
 // Used for stubbing paths for tests, do not modify
 exports.initialize = function(pathsObj){
   _.each(pathsObj, function(path, type) {
@@ -37,10 +31,12 @@ exports.readListOfUrls = function(){
 };
 
 exports.isUrlInList = function(url){
-  var route = router[url];
-  if (route) {
-    return true;
-  }
+  //console.log('Archive.isUrlInList Ran');
+  // console.log('archive.paths.siteAssets', archive.paths.siteAssets);
+  // fs.readdir
+  // fs.readdir(archive.paths.siteAssets +)
+  //     fs.readFile
+      // fs.open()}
 };
 
 exports.addUrlToList = function(url){
@@ -53,14 +49,14 @@ exports.addUrlToList = function(url){
   // router[url] = null;
   // var newUrl = '/' + url;
   console.log('url === ', url);
-  fs.readFile(paths.archivedSites + url, 'utf8', function(err, data){
-    if (err) throw err;
+  // fs.readFile(paths.archivedSites + url, 'utf8', function(err, data){
+  //   if (err) throw err;
+  // });  
     // console.log('data', data);
-    router[url] = data;
+    // router[url] = data;
     // sendResponse(res, data, 200, req.url);
     // console.log(data);
 
-  });  
 
   console.log('router[stuff]', router);
 };
@@ -71,5 +67,5 @@ exports.isUrlArchived = function(){
 exports.downloadUrls = function(url, res){
   // Call function from htmlfetchers.js with url that retrieves page content and returns it.
   // Store the content into paths.archievedSites. 
-  router[url] = fetcher.retrieveContent(url, res);
+  // router[url] = fetcher.retrieveContent(url, res);
 };
