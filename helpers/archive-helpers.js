@@ -1,8 +1,6 @@
 var fs = require('fs');
 var path = require('path');
 var _ = require('underscore');
-var fetcher = require('../workers/htmlfetcher.js');
-var handler = require('../web/request-handler.js');
 
 /*
  * You will need to reuse the same paths many times over in the course of this sprint.
@@ -36,7 +34,6 @@ exports.readListOfUrls = function(callback){
   });
 };
 
-<<<<<<< HEAD
 exports.isUrlInList = function(url, callback){
   exports.readListOfUrls(function(sites) {
     var found = _.any(sites, function(site, i) {
@@ -50,37 +47,6 @@ exports.addUrlToList = function(url, callback){
   fs.appendFile(exports.paths.list, url + '\n', function(err, file){
     callback();
   });
-=======
-exports.isUrlInList = function(url){
-  //console.log('Archive.isUrlInList Ran');
-  // console.log('archive.paths.siteAssets', archive.paths.siteAssets);
-  // fs.readdir
-  // fs.readdir(archive.paths.siteAssets +)
-  //     fs.readFile
-      // fs.open()}
-};
-
-exports.addUrlToList = function(url){
-  // if (url === '/'){ url = '/index.html'; }
-  // console.log('test in addUrlToList');
-  // var fileObj = new ActiveXObject('Scripting.FileSystemObject');
-  // var thisFile = fileObj.OpenTextFile('../archives/sites.txt');
-  // thisFile.WriteLine(url + ',');
-  // thisFile.Close();
-  // router[url] = null;
-  // var newUrl = '/' + url;
-  console.log('url === ', url);
-  // fs.readFile(paths.archivedSites + url, 'utf8', function(err, data){
-  //   if (err) throw err;
-  // });  
-    // console.log('data', data);
-    // router[url] = data;
-    // sendResponse(res, data, 200, req.url);
-    // console.log(data);
-
-
-  console.log('router[stuff]', router);
->>>>>>> 67c5a28b9690f983fb224cc7e4e5ead1738bba7b
 };
 
 exports.isUrlArchived = function(url, callback){
@@ -94,8 +60,5 @@ exports.isUrlArchived = function(url, callback){
   });
 };
 
-exports.downloadUrls = function(url, res){
-  // Call function from htmlfetchers.js with url that retrieves page content and returns it.
-  // Store the content into paths.archievedSites. 
-  // router[url] = fetcher.retrieveContent(url, res);
+exports.downloadUrls = function(){
 };
