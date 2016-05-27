@@ -9,8 +9,8 @@ var _ = require('underscore');
  * customize it in any way you wish.
  */
 
-exports.paths = {
-  siteAssets: path.join(__dirname, '../web/public'),
+exports.paths = {                                           // this paths obj caches different paths routes to certain folders
+  siteAssets: path.join(__dirname, '../web/public'),          // stores path to web/public folder inside of 'siteAssets' key
   archivedSites: path.join(__dirname, '../archives/sites'),
   list: path.join(__dirname, '../archives/sites.txt')
 };
@@ -25,16 +25,39 @@ exports.initialize = function(pathsObj){
 // The following function names are provided to you to suggest how you might
 // modularize your code. Keep it clean!
 
-exports.readListOfUrls = function(){
+exports.readListOfUrls = function(callback){
+  fs.readFile(exports.paths.list, function(err, sites){
+    sites = sites.toString().split('\n');
+    if ( callback ) {
+      callback(sites);
+    }
+  });
 };
 
-exports.isUrlInList = function(){
+exports.isUrlInList = function(url, callback){
+  exports.readListOfUrls(function(sites) {
+    var found = _.any(sites, function(site, i) {
+      return site.match(url);
+    });
+    callback(found);
+  });
 };
 
-exports.addUrlToList = function(){
+exports.addUrlToList = function(url, callback){
+  fs.appendFile(exports.paths.list, url + '\n', function(err, file){
+    callback();
+  });
 };
 
-exports.isUrlArchived = function(){
+exports.isUrlArchived = function(url, callback){
+  // url = url.slice(1); // ugly hack
+  // url = url.slice(0, url.length-1); // ugly hack 
+  var sitePath = path.join(exports.paths.archivedSites, url);
+  console.log('isUrlArchived: ', url); 
+  fs.exists(sitePath, function(exists) {
+    // console.log('callback', callback);
+    callback(exists);
+  });
 };
 
 exports.downloadUrls = function(){
